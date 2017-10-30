@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class CreateDateSimpleDateFormat {
+public class CreateDateFromSimpleDateFormat {
     public static void main(String[] args) throws Exception {
 
         SimpleDateFormat forParseDate = new SimpleDateFormat("dd/MM/yy");

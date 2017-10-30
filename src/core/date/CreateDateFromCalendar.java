@@ -1,6 +1,6 @@
 package core.date;
 
-public class CreateDateCalendar {
+public class CreateDateFromCalendar {
     public static void main(String[] args) {
 
     }

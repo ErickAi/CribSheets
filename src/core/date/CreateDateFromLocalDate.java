@@ -1,11 +1,10 @@
 package core.date;
 
 
-import java.sql.Time;
 import java.time.Instant;
 import java.util.Date;
 
-public class CreateDateLocalDate {
+public class CreateDateFromLocalDate {
 
     public static void main(String[] args) {
         Instant timestamp = Instant.now();
