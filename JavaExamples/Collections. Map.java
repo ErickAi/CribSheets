@@ -43,14 +43,17 @@ Iterator<Map.Entry<String, String>> iterator = map.entrySet().iterator();
         System.out.println(key + ":" + value);
     }
 //инкрементировать value при совпадении key
-Random random = new Random(36);
-Map<Integer, Integer> hashMap = new HashMap<>();
-
-for (int i = 0; i < 100; i++){
-    int number = random.nextInt(10);          // Создадим число от 0 до 10
-    Integer frequency = hashMap.get(number);
+Map <Character, Integer> map = new Map<>;
+for (char i = 'a'; i<'d'; i++){
+    Integer frequency = hashMap.get(i);
     hashMap.put(number, frequency == null ? 1 : frequency + 1);
 }
+//инкрементировать value c Java8
+public void incrementValue(Character key) {
+         map.put(key, map.getOrDeafult(key,0) + 1);
+    }
+}
+
 System.out.println(hashMap);
 //подсчет совпадений заданной строки со значениями карты	
 	public static int getCountTheSameValue(HashMap<String, String> map, String name)

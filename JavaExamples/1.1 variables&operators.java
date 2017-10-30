@@ -1,6 +1,6 @@
 //ПЕРЕМЕННЫЕ 
 
-Type		deafolt		value				description
+Type		deafult		value				description
 byte	1	0			-128 .. 127			Самое маленькое целое — один байт
 short	2	0			-32,768 .. 32,767	Короткое целое, два байта
 int		4	0			— 2*109 .. 2*109	Целое число, 4 байта
