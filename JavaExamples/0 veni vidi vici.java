@@ -2,6 +2,8 @@ break, continue, return
 extends, implements
 instanceof
 
+	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));	
+
 //ИТЕРАТОР ДЛЯ Map
 for (Map.Entry entry : properties.entrySet()){
     System.out.println("key: " + entry.getKey() + " value: " + entry.getValue());
