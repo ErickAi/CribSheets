@@ -1,3 +1,39 @@
-------------------------------------------------------------|	
+------------------------------------------------------------------------------------|	
 SERVLETS
-mapping requests to: {PROJECT_HOME}/src/webapp/WEB-INF/web.xml
+в готовом проекте подключить систему сборки (например Maven)
+добавить зависимость (dependancy) в pom.xml и обновить конфигурацию Maven
+        <!--Web-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+        </dependency>
+------------------------------------------------------------------------------------|	
+прописать mapping в: (создать каталог и файл в нем) 
+			{project_HOME}\src\main\webapp\WEB-INF\web.xml
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+		 http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+    <display-name>Topjava</display-name>
+
+    <servlet>
+			<!--уникальное имя сервлета-->
+        <servlet-name>userServlet</servlet-name>
+			<!--полное пакетный путь к сервлету-->
+		<servlet-class>ru.javawebinar.topjava.web.UserServlet</servlet-class>
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+			<!--можно мапить по имени, путь уже указан в теге выше-->
+		<servlet-name>userServlet</servlet-name>
+			<!--паттерн адресной строки-->
+		<url-pattern>/users</url-pattern>
+    </servlet-mapping>
+
+</web-app>
+------------------------------------------------------------------------------------|	
+пофиксить баг (alt+Enter) или вторым шагом добавить:
+
