@@ -2,4 +2,16 @@
 TOMCAT НАСТРОЙКИ
 TOMCAT_HOME/conf/tomcat-users.xml в конец документа добавить строку:
 <user username="tomcat" password="tomcat" roles="tomcat,manager-gui,admin-gui"/>
+------------------------------------------|	
+edit confijuration -> + -> Tomcat server -> local
+	Name Tomcat
+	host: localhost		port: 8080
+application server -> configure: tomcat_root
+warnings: No artifacts markel for deployment -> fix: warexploded
+deployment -> application context: /topjava
 
+------------------------------------------------------------|	
+TOMCAT-REMOTE server настройки
+edit confijuration -> + -> remote
+Name tomcat_remote
+host: localhost		port: 8000

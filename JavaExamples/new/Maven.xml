@@ -18,10 +18,6 @@ MAVEN НАСТРОЙКИ
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-
-        <!-- Logging -->
-        <logback.version>1.2.3</logback.version>
-        <slf4j.version>1.7.25</slf4j.version>
     </properties>
 
     <build>
@@ -39,3 +35,13 @@ MAVEN НАСТРОЙКИ
             </plugin>
         </plugins>
     </build>
+
+    <dependencies>
+    </dependencies>
+
+    <profiles>
+    </profiles>
+
+    <dependencyManagement>
+    </dependencyManagement>
+</project>
