@@ -2,27 +2,8 @@
 системы сборки:		Maven, ant, gradle 
 контроль версий:	Git, svn, mercurial
 фреймворки:			Spring, MVC
-базы данных:		SQL, XML, PostgreSQL
+базы данных:		SQL, PostgreSQL
 		hibernate/JPA, ,,,,
-языки: 				HTML, CSS, JavaScript, node.js, JSF, EL
+языки: 				HTML, XML, CSS, JavaScript, node.js, JSF, EL
 
-понимание транзакций. Опыт оптимизации запросов приветствуется;
-Опыт работы с JavaScript (желательно знакомство с фреймворком ExtJS), Ajax;
-Желательно — знание паттернов проектирования, SQL, RCP/SWT, Spring.
-Уверенные знания Java EE
-Понимание основных принципов работы реляционных СУБД:
-Знание протоколов HTTP, SOAP, понимание принципов работы сервлетов и контейнеров сервлетов.
-Good knowledge of Java core, data structures, algorithms, multi-threading and design patterns
-Understanding concept of REST services
-Linux usage experience
-Ability to read and write in English
-
-Вашим большим плюсом будет:
-опыт работы с СУБД PostgreSQL;
-навыки работы с JavaScript;
-навыки работы в *nix системах;
-опыт работы c GWT, angular2, groovy и vaadin;
-опыт разработки REST API;
-опыт использования систем continuous integration (TeamCity, Jenkins);
-опыт использования инструментов модульного (JUnit или аналогов) и интеграционного тестирования.
-
+TODO: отрисовать таблицу жсп на локалхосте
