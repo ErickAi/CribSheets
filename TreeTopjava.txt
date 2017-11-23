@@ -2,20 +2,52 @@
 		ru
 			javawebinar
 				topjava
-					Main.java
 					model
-						Meal.java
-						MealWithExceed.java
+						-AbstractBaseEntity.java
+						-AbstractNamedEntity.java
+						-Meal.java
+						-MealWithExceed.java
+						-Role.java
+						-User.java
+					repository
+						mock
+							-InMemoryMealRepositoryImpl.java
+							-MockUserRepositoryImpl.java
+						-MealRepository.java
+						-UserRepository.java
+					service
+						-MealService.java
+						-MealServiceImpl.java
+						-UserService.java
+						-UserServiceImpl.java
 					util
-						MealsUtil.java
-						TimeUtil.java
+						exception
+							-NotFoundException.java
+						-DateTimeUtil.java
+						-MealsUtil.java
+						-ValidationUtil.java
 					web
-						UserServlet.java
-	main.iml
+						meal
+							-MealRestController.java
+						user
+							-AbstractUserController.java
+							-AdminRestController.java
+							-ProfileRestController.java
+						-MealServlet.java
+						-UserServlet.java
+					-AuthorizedUser.java
+					-SpringMain.java
 	resources
-		logback.xml
+		spring
+			-spring-app.xml
+		-logback.xml
 	webapp
-		index.html
-		users.jsp
 		WEB-INF
-			web.xml
+			tld
+				-functions.tld
+			-web.xml
+		-index.html
+		-mealForm.jsp
+		-meals.jsp
+		-users.jsp
+	-main.iml

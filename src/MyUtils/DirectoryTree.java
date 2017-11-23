@@ -10,9 +10,14 @@ public class DirectoryTree {
     public static void  writeFileNames(File path, StringBuilder builder) throws IOException {
         FileWriter writer = new FileWriter("D:/Java/0_Java_Projects/MyCribSheets/TreeTopjava.txt",true);
         for (File file : path.listFiles()) {
-            writer.write(builder + file.getName() + "\n");
-            writer.flush();
+            if (file.isFile()){
+                writer.write(builder + "-" + file.getName() + "\n");
+                writer.flush();
+            }
             if (file.isDirectory()) {
+                writer.write(builder + file.getName() + "\n");
+                writer.flush();
+
                 builder.append("\t");
                 writeFileNames(file,builder);
             }
