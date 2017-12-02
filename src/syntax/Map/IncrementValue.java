@@ -11,16 +11,31 @@ import java.util.Map;
 public class IncrementValue {
 
     public static void main(String[] args) {
-        Map<Character, Integer> strintHashMap = new HashMap<>();
+        Map<Character, Integer> map = new HashMap<>();
 
-        char[] chars = "ghivycrthfvgbinlilubygthdxgdxcvhbuybtryewzeredtfguyhlifdsaw".toCharArray();
+        char[] chars = "qwerqwerqwer".toCharArray();
 
         //Инкрементирование Value если Key уже присутствует в Map
-        for (char c : chars) {
+/*        for (char c : chars) {
             Integer value = strintHashMap.get(c);
             strintHashMap.put (c, value==null ? 1 : value+1);
         }
-        for(Map.Entry<Character,Integer> entry: strintHashMap.entrySet()) {
+            if (!map.containsKey(c))
+                map.put(c, 0);
+                map.put(c, data.get(key) + 1);
+        }
+*/
+        for (char c : chars){
+           // Integer value = map.getOrDefault(c,0);
+            map.put(c,(map.getOrDefault(c,0) + 1));
+        }
+
+        map.computeIfPresent('q', (key,value) -> 22);
+        map.computeIfPresent('a', (key,value) -> 22);
+        map.computeIfAbsent('q', Integer::new);
+        map.computeIfAbsent('s', Integer::new);
+
+        for(Map.Entry<Character,Integer> entry: map.entrySet()) {
             /*
             Character key = entry.getKey();         //получить ключ
             Integer value = entry.getValue();       //получить значение
@@ -29,8 +44,6 @@ public class IncrementValue {
             System.out.println("key " + entry.getKey() + " fricuency= " + entry.getValue());
         }
 
-    }
-    public void printMap (Map map){
     }
 }
 
