@@ -1,0 +1,71 @@
+<html>
+<body>
+	<form action=URL method=get/post>
+		<label>
+		<input type="text" name="name" id="total-field" value="5">
+		</label>
+	</form>
+<hr>	
+	<form action="https://echo.htmlacademy.ru" method="post">
+		<label for="login-field">Ваш логин</label>							<br>
+		<input type="text" name="login" id="login-field">					<br>
+		
+		<label for="password-field">Ваш пароль</label>						<br>
+		<input type="password" name="password" id="password-field">			<br>
+		
+		<label for="text-field">Обо мне</label>								<br>
+		<textarea id="text-field" name="textarea" id="id" 
+		rows="3" cols="22">коротко о себе. ну прям в двух словах</textarea>	<br>
+		
+		<label for="remember">Запомнить меня</label>						
+		<input id="remember" name="remember_me" type="checkbox" checked>	<br>
+        <input type="submit" name="password" value="давай, жми">			<br>
+	</form>
+<hr>	
+	<input name="choice button" value="on"  type="radio" checked>			
+	on																		<br>
+	<input name="choice button" value="off" type="radio">					
+	off																		<br>
+	<select name="theme">
+		<option value="light">Светлая тема</option>
+		<option value="dark">Тёмная тема</option>
+	</select>																<br>
+<br>																		
+	выберите варианты с зажатым ктрл										<br>								
+	<select name="theme" multiple size="3">
+		<option value="one" selected>первый вариант</option>
+		<option value="two">второй вариант</option>
+<!--без атрибута value на сервер уйдет значение тела тега "третий вариант"-->
+		<option selected>третий вариант</option>
+	</select>																<br>
+<br>																			
+	<form action="https://echo.htmlacademy.ru" method="post" 
+							enctype="multipart/form-data">
+		<input type="file" name="file-name" >								<br>
+		<input type="hidden" name="some_parameter" value="param_value">
+        <input type="submit" value="Загрузить">
+	</form>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</body>
+</html>	

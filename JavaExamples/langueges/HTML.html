@@ -1,0 +1,66 @@
+           			
+ГИПЕРССЫЛКИ <a> ANCOR											<br/>
+<a href="page1.htm"> 	относительная ссылка в документе</a>	<br/>
+<a href="http://www.intuit.ru/">абсолютная ссылка в www</a>		<br/>
+<pre>
+	http://...	www-документ
+	ftp://...	ftp-сайт или файл на ftp-сервере
+	mailto:...	запускает почтовый клиент с заполненным
+	news:..		создает ссылку на конференцию сервера новостей
+	telnet://...создает ссылку на telnet-сессию с удаленной машиной
+	wais://...	создает ссылку на WAIS - сервер
+	gopher://...	создает ссылку на Gopher - сервер		</pre>
+<a href="http://www.intuit.ru/">
+	<img border="0" src="logo.gif" width="95" height="25"></a>	<br/>
+			картинка в качестве ссылки							<br/>
+<a href="http://www.intuit.ru/help/">
+			вложенная страница. /обязателен</a>					<br/>
+<a href="http:..." target="_blank">	новое окно</a>				<br/>
+<pre>
+	_self	в текущем фрейме;
+	_parent	во фрейме-родителе текущего фрейма.
+	_top	в окне-родителе всей текущей фрэймовой структуры;</pre>
+	
+<a name="label">перейти СЮДА</a>								<br/>
+<a href="#label">перейти ТУДА из текущего документа</a>			<br/>
+<a href="page1.html#label">перейти ТУДА из WWW</a>				<br/>
+	Если браузер не нашел якорь, то перейдет на начало документа<br/>
+<a href="mailto:help@intuit.ru		<!-- письмо на адрес -->
+	?cc=orders@intuit.ru			<!-- копия письма -->
+	&bcc=admin@intuit.ru			<!-- скрытая копия -->
+	?subject=Тестовый%20запрос!">написать письмо</a>
+<!------------------------------------------------------------>	<hr/>
+Горизонтальные и вертикальные фреймы<br/>
+<html>
+	<frameset rows="50%,50%">
+		<frame src="frame_1.htm">
+		<frameset cols="25%,75%">
+			<frame noresize="noresize" src="frame_2.htm">
+			<frame src="frame_3.htm">
+				<noframes>
+				<body>Ваш браузер не поддерживает фреймы!</body>
+				</noframes>
+		</frameset>
+	</frameset>
+</html>
+-------Фрейм навигации-------<br/>
+<html>
+	<frameset cols="120,*">
+	<frame src="menu.htm"> <!-- фрейм содержит список ссылок на: -->
+	<frame src="frame_1.htm" name="frame_1">
+	</frameset>
+</html>
+-------Встроенный фрейм-------<br/>
+<html>
+<body>
+
+<iframe src="HTML tables.html">
+</iframe><br/>
+
+Некоторые старые браузеры не поддерживают iframes.<br/>
+В этом случае встроенный фрейм (iframe) не будет виден.<br/>
+
+</body>
+</html>
+
+	

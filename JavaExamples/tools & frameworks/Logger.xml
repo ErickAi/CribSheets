@@ -1,0 +1,163 @@
+------------------------------------------------------------------------------------|	
+где нужно логирование, определить константу и добавить логирование в метод:
+    private static final Logger log = getLogger(UserServlet.class);
+
+    @Override
+    protected void [metod_name](...) throws ... {
+        log.debug("redirect to users");
+		//method_body
+		}
+------------------------------------------------------------------------------------|	
+Логирование средствами JDK
+https://habrahabr.ru/post/247647/
+JUL 	— java.util.logging включен в стандарт и поставляется вместе с JDK
+	Методы логгера могут принимать в качестве аргументов строковые сообщения,
+	шаблоны сообщений, исключения, ресурсы локализованных текстовок сообщений,
+	а также, начиная с Java 8, поставщиков строковых сообщений:
+log4j	— вторая версия, увы не совместима с первой
+	Умеет принимать помимо String, Object и Throwable еще два новых типа MapMessage и Marker
+	Конфигурация log4j2 задается несколькими вариантами: xml, json, yaml.
+	Со второй версии нет поддержки конфигурации из property файла.
+	Файл с конфигурацией автоматически ищется classpath,
+	должен иметь название log4j2 и располагаться в пакете по умолчанию.
+	имеется широкий круг классов аппендеров, в том числе асинхронные аппендеры
+	и аппендеры оборачивающие группу других аппендеров
+JCL 	— jakarta commons logging	обертка над JUL и log4j, без дополнительного функционала
+	Методы JCL очень простые, совпадают с названием уровней логгирования,
+	принимают только объекты и исключения и имеют две вариации.
+	Конфигурация JCL содержит отдельные блоки для log4j, JUL и собственной реализации.
+	Если не задать конфигурацию, то используется собственная реализация, именуемая SimpleLog
+Logback	— реализация API SLF4J и используется только в связке с оберткой SLF4J
+	
+SLF4J 	— simple logging facade for java
+	обертка над logback, JUL/log4j/JCL, а также над любым логгером, реализующим ее интерфейс
+class Logger.
+properties лежат в c:\Java\jdk1.8.0_151\jre\lib\logging.properties
+	путь указывать в настройках Maven -> VM options
+уровни логирования:
+--JUL--		-Log4j-		-commons-		-SLF4J-	
+			.fatal		использует
+SEVERE		.error		уровни			.error
+WARNING		.warn		логирования		.warn
+INFO		.info		--JUL--			.info
+CONFIG					сопоставляет	
+FINE		.debug		Log4j			.debug
+FINER					соответственно
+FINEST		.trace		таблице			.trace
+ALL			.all		слева
+OFF			.off		
+------------------------------------------------------------------------------------|	
+LOGGING сторонними библиотеками. slf4j
+в pom.xml добавить проперти и дипенденси
+<properties>
+        <!-- Logging -->
+        <logback.version>1.2.3</logback.version>
+        <slf4j.version>1.7.25</slf4j.version>
+    </properties>
+...
+<dependencies>
+        <!-- Logging with SLF4J & LogBack -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+            <!--scope needs for logging only on runtime-->
+			<scope>runtime</scope>
+        </dependency>
+		<!--for connecting other library to slf4j-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${slf4j.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+</dependencies>
+------------------------------------------------------------------------------------|	
+Конфигурация Logback
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds">
+
+    <!-- To enable JMX Management -->
+    <jmxConfigurator/>
+
+    <appender name="file" class="ch.qos.logback.core.FileAppender">
+        <file>${[project_name]_ROOT}/log/topjava.log</file>
+
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%date %-5level %logger{50}.%M:%L - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{HH:mm:ss.SSS} %-5level %class{50}.%M:%L - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="ru.javawebinar.topjava" level="debug"/>
+
+    <root level="info">
+        <appender-ref ref="file"/>
+        <appender-ref ref="console"/>
+    </root>
+</configuration>
+
+Мы хотим, что бы сообщение от JUL записывались в один файл, от log4j в другой,
+а от slf4j выводились на консоль.
+
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <!--тег для ДИНАМИЧЕСКОЙ конфигурации логера. необязателен.-->
+  <jmxConfigurator/>
+  <!--Аппендеры -->
+  <!--Файловый аппендер для JUL -->
+  <appender name="jul" class="ch.qos.logback.core.FileAppender">
+        <file>log_jul.log</file>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</Pattern>
+        </layout>
+  </appender>
+    <!--Файловый аппендер для log4j -->
+  <appender name="log4j" class="ch.qos.logback.core.FileAppender">
+        <file>log_log4j.log</file>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</Pattern>
+        </layout>
+  </appender>
+  <!--Консольный аппендер -->
+  <appender name="sout" class="ch.qos.logback.core.ConsoleAppender">
+    <layout class="ch.qos.logback.classic.PatternLayout">
+        <Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</Pattern>
+    </layout>
+  </appender>
+  <!-- Логгеры -->
+  <!-- Корневой логгер -->
+  <root level="info" >
+    <appender-ref ref="sout" />
+  </root>
+  <!-- Логгер для jul  -->
+  <logger name="julLog"  additivity="false" >
+    <level value="trace" />
+    <appender-ref ref="jul" />
+  </logger>
+  <!-- Логгер для log4j  -->
+  <logger name="log4jLog"  additivity="false" >
+    <level value="trace" />
+    <appender-ref ref="log4j" />
+  </logger>
+</configuration>
+
+Для того, что бы мост заработал необходимо выполнить код:
+
+SLF4JBridgeHandler.removeHandlersForRootLogger();
+SLF4JBridgeHandler.install();
+
