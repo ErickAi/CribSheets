@@ -1,6 +1,20 @@
 ------------------------------------------------------------------------------------|	
-кастомизация IDEA
+кастомизация IDEA	Ctrl+Alt+S
 hotkeys
-	Font Size	Ctrl	Wheel Up/Down
+	Font Size	Ctrl			Wheel
 	Java Class	Ctrl	Shift	Q
-	Generate	Alt		Pause
+	Generate	Alt				Pause
+	Push		Alt				K
+	usage		Alt+F7 (Ctrl+F7)
+	
+Автоимпорт классов и пакетов в код
+	Editor -> General -> Auto Import -> Optimize import on the fly
+Работа с вкладками
+	Editor -> General -> Editor Tabs -> When closing... most recently...
+ВерблюжьиГорбы
+	Editor -> General -> Smart Keys -> Use "CamelHamps" word
+	Editor -> General -> Smart Keys -> Surround selections on typing quote...
+Автосохранение
+	Appearance & Behavior -> System Settings -> Save files automatically in...
+Inspections
+	Editor -> Inspections -> Find "missing @Override" -> Severity -> Error
