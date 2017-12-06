@@ -1,0 +1,211 @@
+------------------------------------------------------------------------------------|	
+Spring Framework
+CONFIGURATION добавить конфигурацию спринг
+	{project_HOME}\src\main\resources\spring\spring-app.xml
+	(автоматически к проекту подключается спринг контекст)
+<!-- -->
+------------------------------------------------------------------------------------|	
+<script type="text/java"> 
+поднять спринг контекст: в мейне создать переменную:
+	//можно использовать несколько конфигураций (файлов) spring.xml
+    ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-app.xml");
+	//для destroy-method'ов нужен ConfigurableApplicationContext ctx = ...
+	ApplicationContext child = new ClassPathXmlApplicationContext("spring-app.xml", ctx);
+	//дочерний контекст. родительский ответственнен за базовый контекст. не знает бинов дочернего
+получить бин из контекста:
+	//если гет по имени, нужно приведение типа (каст класса)
+    App app = (App) ctx.getBean("app");
+	//если гет по классу (и имени), приведение типа (каст класса) не требуется
+	App app = ctx.getBean(App.class);
+</script>
+------------------------------------------------------------------------------------|	
+КОНФИГУРИРОВАНИЕ АННОТАЦИЯМИ
+    <?xml version="1.0" encoding="UTF-8"?>
+<!-- главный тег, определяет используемые схемы хмл-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+			xsi:schemaLocation="
+			http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+	
+	<!-- подключение аннотаций-->
+	<context:annotation-config/>
+	
+	<!-- указание директорий для сканирования аннотаций к бинам-->
+	<context:component-scan base-package="ru.javawebinar.**.repository"/>
+    <context:component-scan base-package="ru.javawebinar.**.service"/>
+    <context:component-scan base-package="ru.javawebinar.**.web"/>
+	
+	</beans>
+	
+//в коде Java все зависимости инжектятся по ключевым аннотациям:
+	@Autowired						<!--NullPointerException если бин не найден-->
+	@Autowired (required=false)		<!--отключить NPE если инициализация бинов опциональна-->
+	@Inject							<!--JSR330 встроенная JDK-аннотация-->
+	@Qualifier("bean [name]")		<!--непосредственныое указание бина (если наследников несколько)-->
+	@Resource (name="[name]")		<!--JSR330 Qualifier от JDK. использовать только над полями класса или сеттерами-->
+		private Client client;				<!--@Autowired поле-->	
+		public App (Client client){...}		<!--@Autowired конструктор-->		
+		public void setName(String name){.}	<!--@Autowired сеттер-->
+	
+	@PostConstruct					<!--можно пометить несколько методов. все они будут вызваны-->
+	@PreDestroy						<!--сразу после создания/непосредственно перед уничтожением бина-->
+	
+	@Value("Hi, there")				<!--инжект простых значений-->
+	@Value("${client.id}")			<!--так же и из [name].properties-->
+	
+	@Component ("[bean's_name]")	<!--аналог id="name" or name="name" в конфигурировании тегами-->
+	@Controller
+	@Service
+	@Repository
+	
+	@Scope("prototype")				<!--время жизни бина-->
+	
+-----------------------------------извращения--------------------------------------|	
+КОНФИГУРИРОВАНИЕ АННОТАЦИЯМИ без использования .xml
+		
+		создать отдельный класс (в каком-нибудь пакете src/main/java/.../AppConfig.java)
+	@Configuration
+	@Import (LoggersConfig.class)
+	public class AppConfig {
+		@Bean
+		public Client client(){
+			return new Client();
+		}
+		@Bean
+		@Scope ("prototype")
+		public Event event(){
+			return new Event(new Date());
+		}
+		@Autowired
+		private EventLogger combinedLogger;
+	...
+	}
+	
+		в мейне создать: 	<!--либо в конструкторе, либо методом ctx.register(AppConfig.class);-->
+	ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class, LoggersConfig.class);
+	ctx.register(OtherSomeConfg.class);
+	ctx.refresh();			<!--обязателен для обновления контекста-->
+	ctx.scan("com.yet.spring.core.beans");<!--путь до сканируемого файла-->
+	ctx.refresh();
+------------------------------------------------------------------------------------|	
+КОНФИГУРИРОВАНИЕ ТЕГАМИ "spring-app.xml"
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- главный тег, определяет используемые схемы хмл-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!--подключение схем namespace util и 
+	   xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:context="http://www.springframework.org/schema/context"
+			xsi:schemaLocation="
+			http://www.springframework.org/schema/util
+            http://www.springframework.org/schema/util/spring-util-3.2.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context-3.2.xsd">-->		
+
+[name.properties] configeration служебный бин. для подключения файлов пропертис	
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:client.properties</value>
+			</list>
+		</property>
+		<property name="ignoreResourceNotFound" value="true" />
+		<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+	</bean>
+описываем все бины жава классов которые хотим занести в контекст	(id=".." class="..")
+    <bean id="eventLogger" class="com.er.ConsoleEventLogger"/>
+	<!--<bean class="com.er.ConsoleEventLogger"/>
+		если не указать id или name, бин будет внутренним. к нему невозможно получить доступ.
+	<bean name="eventLogger" class="com.er.ConsoleEventLogger"/>
+		вместо id можно использовать поле name
+		допускается использовать оба значения. 
+		допускается несколько алиасов бина(значений поля name) через запятую/пробел/; 
+			(если сущность одна, имплементаций несколько)-->
+подать параметры в конструктор бина (<constructor-arg value="..."/>)
+	<bean id="client" class="com.er.Client">
+			<!-- поочередно-->
+        <constructor-arg index="0" value="1"/>	
+	<!--<constructor-arg index="0" value="${id}"/>-->
+    <!--<constructor-arg value="Er Re"/>-->
+	параметры из подключенного properties
+        <constructor-arg value="${name}"/>
+        
+			<!-- используя индексы параметров или тип(type="java.lang.String") параметров-->
+	<!--<constructor-arg index="0" value="1"/>	<constructor-arg index="1" value="Er Re"/>-->
+			<!-- используя имена параметров (не для production. нужен дебаг символов при компиляции)-->
+	<!--<constructor-arg name="id" value="1"/>	<constructor-arg name="fullName" value="Er Re"/>-->
+	property injection внедрение зависимости через сеттер
+	<property name="greeting" value="Hi there"/> <!--в данном случае name=[поле класса]-->
+<!--<property name="greeting" value="${greeting}"/> properties можно подавать и в property сеттер-->
+<!--<property name="..." value="bean"/>  или бином:  --> 
+	</bean>
+ref="..."	заинжеткить бины в конструктор (типы классов спринг понимает автоматически <constructor-arg ref="client"/>)   
+    <bean id="app" class="com.er.App">
+		<constructor-arg ref="client"/>			
+		<constructor-arg ref="eventLogger"/>
+		<constructor-arg>
+	инициализация бина картой
+            <map>		 <!--key, key-ref, value, value-ref - возможны сочетания в любых вариантах-->
+			<!--<entry key-ref="..." value="..."/>		<!--простое значение-->
+                <entry key="INFO" value-ref="consoleEventLogger"/>		<!--e-num встраивается автоматически-->
+                <entry key="ERROR" value-ref="combinedEventLogger"/>
+			<!--<entry key="...">
+					<bean class="..."/>		внутренним бином
+				<entry/>-->			
+            </map>
+        </constructor-arg> 
+	</bean>
+scope="..."	создать множество объектов одного бина (scope="prototype/request/session/global-session" )
+    <bean id="event" class="com.er.Event" scope="prototype">
+	<!-- singlton: дефолтное значение для бинов. обычно не объявляется.-->
+		<constructor-arg> <!-- передаем в конструктор внутренний бин (дата создания бина)-->
+			<bean class="java.util.Date"/>
+		</constructor-arg>
+	</bean>
+инициализация бина списком/массивом/кучей	
+    <bean id="combinedEventLogger" class="com.er.loggers.CombinedEventLogger">
+		<constructor-arg>
+			<list> <!-- <set>  если это куча-->
+				<value>...</value>		простое значение
+				<ref bean="consoleEventLogger"/>		бином
+				<ref bean="fileEventLogger"/>
+				<bean class="..."/>		внутренним бином
+			</list>
+		</constructor-arg>
+	</bean>
+	
+-----------------------------------------------------|	
+<!--атрибуты инициализации бинов-->
+factory-method="..."	для создания экземпляра класса (например абстрактного)
+	<bean id="..." class="..." factory-method="..."/>
+	<!--возможно передать параметры <constructor-arg value="1"/>-->
+init-method="..."		инициализация, проверки доступности ресурсов
+	<bean id="..." class="..." init-method="init"/>
+	<!--обязан быть без аргументов, любой модификатор доступа, может возвращать значение или эксепшн.-->
+destroy-method="..."	завершение программы в main (ctx.close !!ConfigurableApplicationContext!!) destroy-method=
+	<bean id="..." class="..." destroy-method="destroy"/>
+	<!--метод освобождения ресурсов/кэша задействованных в классе бина-->
+parent="..." 			наследуется все что есть у родителя
+	<bean id="..." class="..." parent="[id_суперкласса]"/>
+	<!--чтобы ничего не забыть !!включая init/destroy-method'ы!!-->
+abstract="true" 		бин используется как родительский. для шаблона атрибутов (-> parent="[id_this])
+	<bean id="..." abstract="true">	<constructor-arg>...</constructor-arg>	</bean>
+	<!--атрибут class="..." можно не указывать. бин не мапится и в контекст не заносится.-->
+depends-on="[->id]"		бин попадет в контекст только после создания ->id бина
+	<bean id="..." depends-on="app"/>
+	<!--классы могут быть никак не связаны. depends можно указывать несколько через запятую-->
+lazy-init="true"		инициализация бина только в случае непосредственного обращения к нему
+	<bean id="..." lazy-init="true"/>
+<beans deafault-lazy-init="true"> при объявлении lazy в шапке хмл, все бины будут ленивые </beans>
+import resource="[file].xml" импорт конфигураций из дополнительного файла 	
+<beans ...> <import resource="loggers.xml"/> </beans>
+</beans>
+

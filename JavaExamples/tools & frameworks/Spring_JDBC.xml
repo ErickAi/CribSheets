@@ -1,0 +1,43 @@
+Spring_JDBC
+<!---->
+------------------------------------------------------------------------------------|
+<!--Аннотировать класс-->
+@Repository
+public class Jdbc(for)[Class_Name]RepositoryImpl implements [Class_Name]Repository {
+<!--поля:-->
+    p s f BeanPropertyRowMapper<Class_Name> ROW_MAPPER = BeanPropertyRowMapper.newInstance([Class_Name].class);
+		<!---->
+	p f JdbcTemplate jdbcTemplate;
+    	<!---->
+	p f NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+		<!---->
+    p f SimpleJdbcInsert insert[Class_Name];
+<!--конструктор: (параметры подаем из конфигурационного файла [spring].xml)-->
+    @Autowired
+    public Jdbc[Class_Name]RepositoryImpl(DataSource dataSource, JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+        this.insert[Class_Name] = new SimpleJdbcInsert(dataSource)
+                .withTableName("users(usually [Class_Name]s)")
+                .usingGeneratedKeyColumns("id");
+        this.jdbcTemplate = jdbcTemplate;
+        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+    }
+	
+	@Override
+    public Meal save(Meal meal, int userId) {
+        return null;
+    }
+
+    @Override
+    public boolean delete(int id, int userId) {
+        return false;
+    }
+
+    @Override
+    public Meal get(int id, int userId) {
+        return null;
+    }
+
+    @Override
+    public List<[Class_Name]> getAll(int userId) {
+        return null;
+    }
