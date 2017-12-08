@@ -40,7 +40,7 @@ java.lang.Tread extends Object,implements Runnable{
 	Thread.UncaughtExceptionHandler	getUncaughtExceptionHandler()	//Returns the handler invoked 
 						//when this thread abruptly terminates due to an uncaught exception.
 	static int	activeCount()
-		//Returns an estimate of the number of active threads in the current thread's thread group and its subgroups.
+		//Returns an estimate of the number of active com.er.threads in the current thread's thread group and its subgroups.
 	void	checkAccess()
 		//Determines if the currently running thread has permission to modify this thread.
 	protected Object	clone()
@@ -53,7 +53,7 @@ java.lang.Tread extends Object,implements Runnable{
 	static int	enumerate(Thread[] tarray)
 			//Copies into the specified array every active thread in the current thread's thread group and its subgroups.
 	static Map<Thread,StackTraceElement[]>	getAllStackTraces()
-			//Returns a map of stack traces for all live threads.
+			//Returns a map of stack traces for all live com.er.threads.
 	ClassLoader	getContextClassLoader()
 			//Returns the context ClassLoader for this Thread.
 	static Thread.UncaughtExceptionHandler	getDefaultUncaughtExceptionHandler()

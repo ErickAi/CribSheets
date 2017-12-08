@@ -1,7 +1,17 @@
+
+Array int[] intArray = {1,2,4,5,6,7};
+List<?> list = new ArrayList;
+
+list.addAll(Arrays.asList(array));		//из массива в лист
+int[] nums = (int[]) list.toArray;		//из листа в массив
+int[] bams = Arrays.copyOf(intArray)	//из массива в массив
+int[] bams = Arrays.copyOf(intArray, [размер создаваемого массива])
+System.arraycopy(other, 	0, 			array, 	1, 			other.length);
+			//	(откуда,	с элемента,	куда,	с элемента,	длинна)	
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.Arrays;
-
+ 
 public class MainClass
 {
     public static void main(String[] args) 

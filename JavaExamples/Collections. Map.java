@@ -22,6 +22,19 @@ Set<K>				keySet()			Получить множество всех ключей
 Collection<V>		values()			Получить множество всех значений
 Set<Map.Entry<K,V>	entrySet()			Получить множество всех пар	
 */
+
+//инкрементировать value при совпадении key
+Map <Character, Integer> map = new Map<>;
+for (char i = 'a'; i<'d'; i++){
+    Integer frequency = hashMap.get(i);
+    hashMap.put(number, frequency == null ? 1 : frequency + 1);
+}
+//инкрементировать value c Java8
+public void incrementValue(Character key) {
+         map.put(key, map.getOrDeafult(key,0) + 1);
+    }
+}
+
 public static void map(String[] args){
     //все элементы хранятся в парах
     Map<String, String> map = new HashMap<String, String>();
@@ -42,17 +55,7 @@ Iterator<Map.Entry<String, String>> iterator = map.entrySet().iterator();
         String value = pair.getValue();        //значение
         System.out.println(key + ":" + value);
     }
-//инкрементировать value при совпадении key
-Map <Character, Integer> map = new Map<>;
-for (char i = 'a'; i<'d'; i++){
-    Integer frequency = hashMap.get(i);
-    hashMap.put(number, frequency == null ? 1 : frequency + 1);
-}
-//инкрементировать value c Java8
-public void incrementValue(Character key) {
-         map.put(key, map.getOrDeafult(key,0) + 1);
-    }
-}
+
 
 System.out.println(hashMap);
 //подсчет совпадений заданной строки со значениями карты	
