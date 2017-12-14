@@ -1,4 +1,4 @@
-package com.er.syntax.Map;
+package com.er.core.Map;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -9,11 +9,11 @@ public class Reflection {
         Class clss1 = SomeClass.class;
         Class clss2 = someClass.getClass();
         Class clss3 = Class.forName("com.er.OOP.reflection.SomeClass");
-
-        //SomeClass newSomeClass = (SomeClass) clss3.newInstance();
+//        Class clssFromOtherPackage = ClassLoader.getSystemClassLoader().loadClass("com.javarush.task.task35.task3507.AnimalClassLoader.java");
+//        System.out.println(clssFromOtherPackage);
+        SomeClass newSomeClass = (SomeClass) clss3.newInstance();
 
         System.out.println(clss2.getName());
-
         Constructor[] constructors = clss1.getConstructors();
         for (Constructor c : constructors){
             System.out.println("\t" + c.getClass().getSimpleName());

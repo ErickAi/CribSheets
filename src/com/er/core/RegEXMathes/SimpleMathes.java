@@ -1,4 +1,4 @@
-package com.er.syntax.RegEXMathes;
+package com.er.core.RegEXMathes;
 
 public class SimpleMathes {
 

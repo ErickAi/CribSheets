@@ -1,11 +1,11 @@
 package com.er.OOP.InnerAndNested;
 
-public class OuterInner {
+public class ForInner {
 
     private int i, j;
     private static int x;
 
-    OuterInner(int i, int j, int x){
+    ForInner(int i, int j, int x){
         this.i = i; this.j = j; this.x = x;
     }
 
@@ -19,7 +19,7 @@ public class OuterInner {
     }
 
     public static void main(String[] args) {
-        OuterInner outerObject = new OuterInner(3,7,1);
-        OuterInner.Inner innerObject = outerObject.new Inner();
+        ForInner outerObject = new ForInner(3,7,1);
+        ForInner.Inner innerObject = outerObject.new Inner();
     }
 }

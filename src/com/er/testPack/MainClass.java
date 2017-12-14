@@ -1,4 +1,4 @@
-package com.er.TestPack;
+package com.er.testPack;
 
 public class MainClass {
 

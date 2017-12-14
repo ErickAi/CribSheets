@@ -1,4 +1,4 @@
-package com.er.syntax.MySystemOut;
+package com.er.core.MySystemOut;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;

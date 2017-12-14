@@ -1,12 +1,12 @@
 package com.er.OOP.InnerAndNested;
 
-public class OuterNested {
-//Польза данных классов заключается в основном в логической группировке сущностей,
+public class ForNested {
+//Польза вложенных классов заключается в основном в логической группировке сущностей,
 //в улучшении инкапсуляции, а также в экономии class-space.
 //тестирование приватных статических методов
     private int i, j;
     private static int x;
-    OuterNested(int i, int j, int x){
+    ForNested(int i, int j, int x){
         this.i = i; this.j = j; this.x = x;
     }
     static class Nested{
@@ -19,8 +19,8 @@ public class OuterNested {
     }
 
     public static void main(String[] args) {
-        OuterNested outer = new OuterNested(3,5,1);
-        //int summ = OuterNested.Nested.summAll(i,j);
-        OuterNested.Nested nestedObject = new OuterNested.Nested();
+        ForNested outer = new ForNested(3,5,1);
+        ForNested.Nested nestedObject = new ForNested.Nested();
+        int summ = nestedObject.summAll(outer.i,outer.j);
     }
 }
