@@ -1,11 +1,13 @@
 ------------------------------------------------------------------------------------|	
 кастомизация IDEA	Ctrl+Alt+S
 hotkeys
-	Font Size	Ctrl			Wheel
-	Java Class	Ctrl	Shift	Q
-	Generate	Alt				Pause
-	Push		Alt				K
-	usage		Alt+F7 (Ctrl+F7)
+	Font Size		Ctrl + Wheel
+	Java Class		Ctrl + Shift + Q
+	Generate		Alt + Pause
+	Push			Alt + K
+	usage			Alt+F7/Ctrl+F7
+	Super Method	Ctrl + Shift + S	
+	File Structure	F4 					(was Jump to Source)
 	
 Автоимпорт классов и пакетов в код
 	Editor -> General -> Auto Import -> Optimize import on the fly

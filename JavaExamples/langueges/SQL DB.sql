@@ -34,7 +34,11 @@ string		2		Nosfreatu	Horror		94
 string		3		The Kid		Comedy		68
 string		4		The Hobbit	Fantasy		95
 
-SELECT колонка	FROM таблица	(WHERE колонка='знач');
+jdbcTemplate.querry("SELECT колонка  FROM таблица    WHERE колонка=? AND колонка=?",ROW_MAPPER, знач, знач);
+
+SELECT колонка  FROM таблица    WHERE колонка='знач' AND колонка='знач';
+SELECT колонка  FROM таблица    ORDER BY колонка DESC;
+SELECT колонка  FROM таблица    WHERE колонка=? AND колонка BETWEEN знач AND знач ORDER BY колонка
 
 SELECT * 		FROM movies 	WHERE genre='Fantasy';		
 строка--	4		The Hobbit	Fantasy		95		--
