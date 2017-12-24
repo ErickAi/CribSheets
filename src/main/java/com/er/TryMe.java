@@ -1,37 +1,28 @@
 package com.er;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.*;
 
 public class TryMe {
-    public static void main(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    int i;
 
-        int input = Integer.parseInt(reader.readLine());
-        reader.close();
-
-        System.out.println(factorial(input));
+    public TryMe(int i) {
+        this.i = i;
     }
 
-    public static String factorial(int n) {
-        //add your code here
-        long nach;
-        long res = 0;
-        if (n < 0) {
-            return String.valueOf(res);
-        }
-        if (n<=150) {
-            res+=1;
-            if (n!=0) {
-                for (int i = 1; i <= n; i++) {
-                    nach = res * i;
-                    res = nach;
-                }
-                return String.valueOf(res);
-            }
-        }
+    public static void main(String[] args) {
+        TryMe.class.getAnnotations();
+        (new TryMe(2)).getClass().getAnnotations();
+        int a = (byte) (-128 - 1);
+        System.out.println(a);
+        int[] j = {};
+        //System.arraycopy(j,);
+        System.out.println(1>1 ? "more" : "less");
+        Integer x = null;
+        int z = x;
+        System.out.println(z);
+    }
 
-        return String.valueOf(res);
-    }
-    }
+}
+
