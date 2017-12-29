@@ -1,0 +1,14 @@
+	абстрактный базовый класс
+[I/O]Stream				//Базовый абстрактный класс
+Filter[I/O]Stream		//Абстрактный класс, интерфейс для оберток
+Buffered[I/O]Stream		//Буферизированный поток
+ByteArray[I/O]Stream	//буфер в памяти (массив байтов)
+Data[I/O]Stream			//стандартные типы данных Java
+File[I/O]Stream/		//файл
+Object[I/O]Stream		//объектов
+Piped[I/O]Stream//Реализует понятие канала.
+StringBuffer[I/O]Stream	//Превращает строку (String) в поток данных [I/O]Stream
+PrintStream				//Выходной поток, включающий методы print() и println()
+PushbackIputStream		//Входной поток, поддерживающий однобайтовый возврат во входной поток
+Sequence[I/O]Stream		//Сливает два или более потока [I/O]Stream в единый поток
+http://developer.alexanderklimov.ru/android/java/io.php

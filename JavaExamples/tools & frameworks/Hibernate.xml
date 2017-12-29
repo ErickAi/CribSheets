@@ -1,0 +1,53 @@
+------------------------------------------------------------------------------------|	
+Аннотации Java для работы с базой данных
+Рассмотрим аннотации, которые используются в стандарте JPA и в различных фреймворках вроде Hibernate.
+
+@Entity		
+@Table	(name="[name]")	имя таблицы, для отображения сущности.
+@Column	(name="[name]")	колонка таблицы для поля сущности.
+@Id						используется в паре с:
+@GeneratedValue			автогенерация ключа согласно выбранной стратегии
+		(strategy=IDENTITY)//AUTO,SEQUNCE,TABLE
+@Version				
+@OrderBy("firstName asc")	
+@Transient		
+@Lob			
+@PersistenceContext	
+@Temporal		
+@Embedded		
+
+Аннотации для связи ассоциаций
+@OneToOne	javax.persistence.OneToOne
+@ManyToOne	javax.persistence.ManyToOne
+@OneToMany	javax.persistence.OneToMany
+@ManyToMany	javax.persistence.ManyToMany
+@PrimaryKeyJoinColumn	javax.persistence.PrimaryKeyJoinColumn
+@JoinColumn	javax.persistence.PrimaryKeyJoinColumn
+@JoinTable	javax.persistence.JoinTable
+@MapsId		javax.persistence.MapsId
+
+Аннотации наследования
+@Inheritance			javax.persistence.Inheritance
+@DiscriminatorColumn	javax.persistence.DiscriminatorColumn
+@DiscriminatorValue		javax.persistence.DiscriminatorValue
+
+Аннотации запросов
+@NamedQueries		javax.persistence.NamedQueries
+@NamedQuery			javax.persistence.NamedQuery
+@SqlResultSetMapping	javax.persistence.SqlResultSetMapping
+@EntityResult		javax.persistence.EntityResult
+
+Аннотации Hibernate
+@Audited	org.hibernate.envers.Audited
+@NotAudited	org.hibernate.envers.NotAudited
+@Type		org.hibernate.annotations.Type
+------------------------------------------------------------------------------------|	
+						PERSISTED
+							| find/
+							| query
+new()		 persist()		|		remove()
+-----> NEW ------------> MANAGED ------------> REMOVED
+			out of scope/ |   |
+			  serialised/ |   | merge()/
+				  cloned  |   | refresh()
+						 DETACHED

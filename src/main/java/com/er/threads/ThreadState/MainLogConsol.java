@@ -2,12 +2,12 @@ package com.er.threads.ThreadState;
 
 public class MainLogConsol {
     //static volatile String changeStr = "\tString does'not changed";
-    private static String forChange = "\tThis is not changed String";
+    private static String strForChange = "\tThis is not changed String";
     public static synchronized void changeStr(String threadName) {
         //forChange = String.format("\tString changed by %s",Thread.currentThread().getName());
-        forChange = String.format("\tString changed by %s",threadName);
+        strForChange = String.format("\tString changed by %s",threadName);
 
-        System.out.println(forChange);
+        System.out.println(strForChange);
 
     }
 
@@ -19,13 +19,13 @@ public class MainLogConsol {
         daemon.start();
 
         try{
-            System.out.println(forChange + "  ++from main");
+            System.out.println(strForChange + "  ++from main");
             first.start();
             second.start();
             checking.start();
             //Thread.yield();
             checking.join();
-            System.out.println(forChange + "  ++from main");
+            System.out.println(strForChange + "  ++from main");
         }
         catch (InterruptedException ex){
             System.out.println("interrupted in main");

@@ -7,10 +7,10 @@ public class Test extends Thread {//extends от Thread, который implemen
         try {
             System.out.println("Started and Sleeped");
             Thread.sleep(1111);
-            System.out.println(getState() + " from run");
+            System.out.println(this.getName() + getState() + " from current");
         } catch (InterruptedException ex) {
         }
-        System.out.println("I'm finished");
+        System.out.println(" finished");
     }
 
     public static void main(String[] args) {
@@ -19,9 +19,9 @@ public class Test extends Thread {//extends от Thread, который implemen
         Test counter = new Test();
         firsttt.start();
         seccond.start();
-        System.out.println(counter.getState());
+        System.out.println("counter is " + counter.getState());
         counter.start();
-        System.out.println(counter.getState());
+        System.out.println("counter is " + counter.getState());
 
 
     }

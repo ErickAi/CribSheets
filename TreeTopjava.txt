@@ -10,7 +10,13 @@
 							-Meal.java
 							-Role.java
 							-User.java
+						-Profiles.java
 						repository
+							datajpa
+								-CrudMealRepository.java
+								-CrudUserRepository.java
+								-DataJpaMealRepositoryImpl.java
+								-DataJpaUserRepositoryImpl.java
 							jdbc
 								-JdbcMealRepositoryImpl.java
 								-JdbcUserRepositoryImpl.java
@@ -42,6 +48,8 @@
 								-ProfileRestController.java
 							-UserServlet.java
 		resources
+			cache
+				-ehcache.xml
 			db
 				-hsqldb.properties
 				-initDB.sql
@@ -52,6 +60,7 @@
 			spring
 				-spring-app.xml
 				-spring-db.xml
+				-spring-tools.xml
 		webapp
 			css
 				-style.css
@@ -68,6 +77,7 @@
 			ru
 				javawebinar
 					topjava
+						-ActiveDbProfileResolver.java
 						-MealTestData.java
 						repository
 							mock

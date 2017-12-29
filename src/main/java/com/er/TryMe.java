@@ -6,22 +6,26 @@ import java.util.*;
 
 public class TryMe {
     int i;
+    String s;
+    String n;
 
-    public TryMe(int i) {
+    public TryMe(int i, String s, String n) {
         this.i = i;
+        this.s = s;
+        this.n = n;
+    }
+
+    @Override
+    public String toString() {
+        return "TryMe{" +
+                "i=" + i +
+                ", s='" + s + '\'' +
+                ", n='" + n + '\'' +
+                '}';
     }
 
     public static void main(String[] args) {
-        TryMe.class.getAnnotations();
-        (new TryMe(2)).getClass().getAnnotations();
-        int a = (byte) (-128 - 1);
-        System.out.println(a);
-        int[] j = {};
-        //System.arraycopy(j,);
-        System.out.println(1>1 ? "more" : "less");
-        Integer x = null;
-        int z = x;
-        System.out.println(z);
+        System.out.println(new TryMe(5,"string","none"));
     }
 
 }

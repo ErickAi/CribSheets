@@ -6,10 +6,10 @@ import java.io.IOException;
 
 public class DirectoryTreeRecursy {
     private static StringBuilder builder = new StringBuilder("\t");
-    private File srcPath = new File("D:/Java/0_Java_Projects/topjava/src");
-    private static File fileForWriteSrc = new File("D:/Java/0_Java_Projects/MyCribSheets/TreeTopjava.txt");
+    static private File srcPath = new File("D:/Java/0_Java_Projects/basejava");
+    private static File fileForWriteSrc = new File("D:/Java/0_Java_Projects/basejava/home_works/TreeBaseJava.txt");
 
-    public void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
         fileForWriteSrc.delete();
         writeFileNames(srcPath,fileForWriteSrc,builder);
     }

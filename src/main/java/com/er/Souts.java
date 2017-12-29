@@ -18,6 +18,16 @@ public class Souts {
         //BigInteger b = 4000000000;
         //BigDecimal d = new BigDecimal(4000000000);
         System.out.println("" + l +" "+ f);
+        TryMe.class.getAnnotations();
+        (new Souts()).getClass().getAnnotations();
+        int a = (byte) (-128 - 1);
+        System.out.println(a);
+        int[] j = {};
+        //System.arraycopy(j,);
+        System.out.println(1>1 ? "more" : "less");
+        Integer x = null;
+        int z = x;
+        System.out.println(z);
 
     }
 }
