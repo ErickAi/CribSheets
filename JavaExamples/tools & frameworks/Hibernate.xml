@@ -1,3 +1,13 @@
+---|	
+						PERSISTED
+							| find/
+							| query
+new()		 persist()		|		remove()
+-----> NEW ------------> MANAGED ------------> REMOVED
+			out of scope/ |   |
+			  serialised/ |   | merge()/
+				  cloned  |   | refresh()
+						 DETACHED
 ------------------------------------------------------------------------------------|	
 Аннотации Java для работы с базой данных
 Рассмотрим аннотации, которые используются в стандарте JPA и в различных фреймворках вроде Hibernate.
@@ -41,13 +51,4 @@
 @Audited	org.hibernate.envers.Audited
 @NotAudited	org.hibernate.envers.NotAudited
 @Type		org.hibernate.annotations.Type
-------------------------------------------------------------------------------------|	
-						PERSISTED
-							| find/
-							| query
-new()		 persist()		|		remove()
------> NEW ------------> MANAGED ------------> REMOVED
-			out of scope/ |   |
-			  serialised/ |   | merge()/
-				  cloned  |   | refresh()
-						 DETACHED
+---------------------------------------------------------------------------------
