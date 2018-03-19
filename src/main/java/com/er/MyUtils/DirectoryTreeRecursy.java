@@ -17,6 +17,9 @@ public class DirectoryTreeRecursy {
     private static void  writeFileNames(File path, File fileForWrite, StringBuilder builder) throws IOException {
         FileWriter writer = new FileWriter(fileForWrite,true);
         for (File file : path.listFiles()) {
+            if (path.getName().endsWith(".idea") || path.getName().endsWith(".git") || path.getName().endsWith("home_works")) {
+                return;
+            }
             if (file.isFile()){
                 writer.write(builder + "-" + file.getName() + "\n");
                 writer.flush();
