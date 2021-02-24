@@ -4,7 +4,7 @@
 
 
     <groupId>com.er</groupId>
-    <artifactId>MyCribSheets</artifactId>
+    <artifactId>CribSheets</artifactId>
     <packaging>jar</packaging>
 
     <version>1.0-SNAPSHOT</version>
@@ -18,7 +18,6 @@
     </properties>
 
     <build>
-        <finalName>MyCribSheets</finalName>
         <defaultGoal>compile</defaultGoal>
         <plugins>
             <plugin>
